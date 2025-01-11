@@ -112,23 +112,29 @@ $(document).ready(function() {
         }
 
         products.forEach(function(product) {
-            const row = `
-                <tr>
-                    <td>${product.pro_id}</td>
-                    <td>${product.pro_name}</td>
-                    <td>${product.pro_price}</td>
-                    <td>
-                        <button class="action-btn edit-btn" data-id="${product.pro_id}">
-                            <i class="fas fa-edit"></i>編輯
-                        </button>
-                        <button class="action-btn delete-btn" data-id="${product.pro_id}">
-                            <i class="fas fa-trash"></i>刪除
-                        </button>
-                    </td>
-                </tr>
-            `;
+            const row = createTableRow(product);
             tbody.append(row);
         });
+    }
+
+    function createTableRow(product) {
+        return `
+            <tr>
+                <td>${product.pro_id}</td>
+                <td>${product.pro_name}</td>
+                <td>${product.pro_price}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-edit" onclick="editProduct(${product.pro_id})">
+                        <i class="fas fa-edit"></i>
+                        <span>編輯</span>
+                    </button>
+                    <button class="btn btn-delete" onclick="deleteProduct(${product.pro_id})">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>刪除</span>
+                    </button>
+                </td>
+            </tr>
+        `;
     }
 
     // 新增商品表單提交

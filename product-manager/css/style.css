@@ -36,7 +36,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    z-index: 100;
+    z-index: 998;  /* 設置為比 sidebar 低一級 */
     transition: left 0.3s ease;
 }
 
@@ -95,7 +95,7 @@ body {
     color: #fff;
     padding: 20px;
     transition: all 0.3s ease;
-    z-index: 200;
+    z-index: 1000;
 }
 
 /* 側邊欄收合狀態 */
@@ -195,6 +195,8 @@ body {
     padding: 80px 20px 20px;
     min-height: 100vh;
     transition: margin-left 0.3s ease;
+    position: relative;
+    z-index: 1;  /* 設置最低層級 */
 }
 
 .main-content.expanded {
@@ -211,13 +213,7 @@ body {
 
     .sidebar {
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 250px;
-        height: calc(100vh - 60px);
-        z-index: 150;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .sidebar.active {
@@ -225,25 +221,19 @@ body {
     }
 
     .main-content {
-        margin-left: 0;
-        padding-top: 80px;
+        margin-left: 0 !important;
+        width: 100%;
     }
 
-    /* 遮罩層 */
+    /* 移除遮罩相關樣式 */
     .sidebar-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 140;
+        display: none !important;
     }
+}
 
-    .sidebar-overlay.active {
-        display: block;
-    }
+/* 遮罩層樣式 */
+.sidebar-overlay {
+    display: none;
 }
 
 /* 使用者資訊區域 */
@@ -405,6 +395,72 @@ body {
 .btn-cancel {
     background-color: #95a5a6;
     color: #fff;
+}
+
+/* 操作按鈕樣式 */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    gap: 6px;
+}
+
+.btn i {
+    font-size: 14px;
+}
+
+.btn span {
+    line-height: 1;
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #da190b;
+}
+
+/* 在手機版隱藏按鈕文字 */
+@media (max-width: 768px) {
+    .btn span {
+        display: none;
+    }
+    
+    .btn {
+        padding: 8px;
+    }
+    
+    .btn i {
+        margin: 0;
+        font-size: 16px;
+    }
+    
+    .action-buttons {
+        gap: 4px;
+    }
 }
 
 /* 頁尾樣式 */
