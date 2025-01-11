@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能聊天機器人</title>
+    <link rel="stylesheet" href="team139.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>智能聊天機器人</h1>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be displayed here -->
+        </div>
+        <div class="chat-input">
+            <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png" style="display: none;">
+            <button class="attachment-btn" onclick="document.getElementById('fileInput').click()">📎</button>
+            <input type="text" id="messageInput" placeholder="輸入訊息...">
+            <button class="send-btn">⬆︎</button>
+        </div>
+    </div>
+    <script src="team139.js"></script>
+</body>
+</html>
