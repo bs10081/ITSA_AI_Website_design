@@ -1,22 +1,71 @@
 $(document).ready(function() {
-    // 側邊欄收合功能
-    $('#sidebarToggle').click(function() {
-        $('.sidebar').toggleClass('collapsed');
-        $('.main-content').toggleClass('expanded');
+    const isMobile = () => window.innerWidth <= 768;
+
+    // 側邊欄展開/收合
+    $('#sidebarToggle').click(function(e) {
+        e.stopPropagation();
+        if (isMobile()) {
+            $('.sidebar').toggleClass('active');
+            $('.sidebar-overlay').toggleClass('active');
+            $('body').toggleClass('no-scroll');
+        } else {
+            $('.sidebar').toggleClass('collapsed');
+            $('.header').toggleClass('expanded');
+            $('.main-content').toggleClass('expanded');
+        }
+    });
+
+    // 點擊遮罩層關閉側邊欄
+    $('.sidebar-overlay').click(function() {
+        $('.sidebar').removeClass('active');
+        $('.sidebar-overlay').removeClass('active');
+        $('body').removeClass('no-scroll');
     });
 
     // 子選單展開/收合
-    $('.menu-link').click(function(e) {
+    $('.nav-link.has-submenu').click(function(e) {
         e.preventDefault();
-        $(this).next('.submenu').slideToggle();
-        $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
+        e.stopPropagation();
+        $(this).toggleClass('active');
+        $(this).siblings('.submenu').slideToggle(200);
     });
+
+    // 在手機版點擊選項後自動收起側邊欄
+    if (isMobile()) {
+        $('.submenu-link').click(function() {
+            $('.sidebar').removeClass('active');
+            $('.sidebar-overlay').removeClass('active');
+            $('body').removeClass('no-scroll');
+        });
+    }
+
+    // 監聽視窗大小變化
+    $(window).resize(function() {
+        if (!isMobile()) {
+            $('.sidebar').removeClass('active');
+            $('.sidebar-overlay').removeClass('active');
+            $('body').removeClass('no-scroll');
+        }
+    });
+
+    // 在手機版點擊側邊欄外的區域時收起側邊欄
+    if (isMobile()) {
+        $('.main-content').click(function() {
+            if ($('.sidebar').hasClass('active')) {
+                $('.sidebar').removeClass('active');
+                $('#sidebarToggle').removeClass('active');
+                $('.sidebar-overlay').removeClass('active');
+                $('body').removeClass('no-scroll');
+            }
+        });
+    }
 
     // 視圖切換功能
     $('#viewProducts').click(function(e) {
         e.preventDefault();
         $('#addProductView').hide();
         $('#productListView').show();
+        $('#editProductView').hide();
         loadProducts();
     });
 
@@ -24,6 +73,7 @@ $(document).ready(function() {
         e.preventDefault();
         $('#productListView').hide();
         $('#addProductView').show();
+        $('#editProductView').hide();
     });
 
     // 載入商品列表
@@ -140,12 +190,16 @@ $(document).ready(function() {
     // 編輯商品
     $(document).on('click', '.edit-btn', function() {
         const productId = $(this).data('id');
+        console.log('Editing product:', productId);
+        
         // 獲取商品詳細信息
         $.ajax({
             url: 'php/get_product.php',
             method: 'GET',
             data: { id: productId },
+            dataType: 'json',
             success: function(product) {
+                console.log('Loaded product details:', product);
                 // 填充表單
                 $('#editProductId').val(product.pro_id);
                 $('#editProductName').val(product.pro_name);
@@ -158,6 +212,8 @@ $(document).ready(function() {
                 $('#editProductView').show();
             },
             error: function(xhr, status, error) {
+                console.error('Error loading product:', error);
+                console.error('Server response:', xhr.responseText);
                 alert('載入商品資料失敗：' + error);
             }
         });
@@ -165,6 +221,7 @@ $(document).ready(function() {
 
     // 取消編輯
     $('#editCancelBtn').click(function() {
+        console.log('Canceling edit');
         $('#editProductForm')[0].reset();
         $('#editProductView').hide();
         $('#productListView').show();
@@ -179,12 +236,16 @@ $(document).ready(function() {
             pro_price: $('#editProductPrice').val(),
             pro_details: $('#editProductDetails').val()
         };
+        
+        console.log('Submitting edit form:', formData);
 
         $.ajax({
             url: 'php/update_product.php',
             method: 'POST',
             data: formData,
+            dataType: 'json',
             success: function(response) {
+                console.log('Update response:', response);
                 alert('商品更新成功！');
                 $('#editProductForm')[0].reset();
                 $('#editProductView').hide();
@@ -192,6 +253,8 @@ $(document).ready(function() {
                 loadProducts();
             },
             error: function(xhr, status, error) {
+                console.error('Error updating product:', error);
+                console.error('Server response:', xhr.responseText);
                 alert('商品更新失敗：' + error);
             }
         });
