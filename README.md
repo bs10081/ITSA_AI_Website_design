@@ -66,16 +66,16 @@ ai_website/
 ├── chatbot/          # 第二題：聊天機器人應用
 ├── member-login/     # 第三題：會員登入系統
 └── product-manager/  # 第四題：商品管理系統
-    ├── team139.html  # 主頁面
-    ├── team139.css   # 樣式表
+    ├── index.html  # 主頁面
+    ├── style.css   # 樣式表
     ├── script.js     # 前端腳本
     ├── php/         # PHP 後端檔案
     │   ├── config.php
-    │   ├── team139_add_product.php
-    │   ├── team139_delete_product.php
-    │   ├── team139_get_product.php
-    │   ├── team139_get_products.php
-    │   └── team139_update_product.php
+    │   ├── add_product.php
+    │   ├── delete_product.php
+    │   ├── get_product.php
+    │   ├── get_products.php
+    │   └── update_product.php
     └── start-server.sh
 ```
 
