@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2001;
+}
+
+.menu-btn {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    z-index: 2001;
+}
+
+.menu-btn span {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    padding: 8px 16px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #ff1493;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    height: 100vh;
+    background-color: #de9eaf;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+.menu.active {
+    left: 0;
+}
+
+.menu.transparent {
+    background-color: rgba(222, 158, 175, 0.8);
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.menu ul li {
+    margin: 0;
+}
+
+.menu ul li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.menu.transparent ul li a:hover {
+    background-color: rgba(211, 138, 156, 0.8);
+}
+
+.menu ul li a:hover {
+    background-color: #d38a9c;
+}
+
+main {
+    margin-left: 0;
+    min-height: 100vh;
+    background-color: #ffd1dc;
+    transition: margin-left 0.3s ease;
+    padding-top: 60px;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    color: #666;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-body p {
+    margin: 0;
+    color: #666;
+}
+
+.modal-body input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.password-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.password-group input {
+    width: 100%;
+}
+
+.modal-body .forgot-password {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 0.9rem;
+    align-self: flex-start;
+}
+
+.modal-body .submit-btn {
+    background-color: #333;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.modal-body .submit-btn:hover {
+    background-color: #555;
+}
+
+.modal-body .auth-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.modal-body .register-text {
+    color: #666;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.modal-body .register {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.modal-body .forgot-password:hover,
+.modal-body .register:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 769px) {
+    main.menu-active {
+        margin-left: 200px;
+    }
+}

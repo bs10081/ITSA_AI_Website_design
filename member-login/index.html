@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>響應式網頁</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <button id="menuBtn" class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <button id="loginBtn" class="login-btn">登入</button>
+    </header>
+    <nav id="menu" class="menu">
+        <ul>
+            <li><a href="#">選單一</a></li>
+            <li><a href="#">選單二</a></li>
+            <li><a href="#">選單三</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="content">
+            <!-- 主要內容區域 -->
+        </div>
+    </main>
+
+    <!-- 登入視窗 -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>登入帳號</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>電子郵件/電話號碼</p>
+                <input type="text" placeholder="帳號">
+                <div class="password-group">
+                    <input type="password" placeholder="密碼">
+                    <a href="#" class="forgot-password">忘記密碼?</a>
+                </div>
+                <button class="submit-btn">登入</button>
+                <div class="auth-links">
+                    <span class="register-text">沒有帳號？</span>
+                    <a href="#" class="register">註冊</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

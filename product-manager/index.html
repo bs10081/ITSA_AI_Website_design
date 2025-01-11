@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSA 管理面板</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 側邊欄 -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h3>主要功能</h3>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fas fa-box"></i>
+                        <span>商品</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#" id="viewProducts"><i class="fas fa-list"></i> 檢視商品</a></li>
+                        <li><a href="#" id="addProduct"><i class="fas fa-plus"></i> 新增商品</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要內容區 -->
+    <div class="main-content">
+        <!-- 頁首 -->
+        <header>
+            <div class="header-left">
+                <button id="sidebarToggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-greeting">ITSA，你好</span>
+                    <div class="user-role">管理者</div>
+                </div>
+                <div class="user-menu-dropdown">
+                    <button class="user-menu-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            設置
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            我的帳戶
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-info-circle"></i>
+                            我的資訊
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            登出
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 內容區 -->
+        <div class="content">
+            <!-- 商品列表視圖 -->
+            <div id="productListView" class="view">
+                <h2>商品表</h2>
+                <div class="product-info">
+                    <h3>商品詳細資訊</h3>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>名稱</th>
+                                <th>價格</th>
+                                <th>功能</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- 商品數據將通過JavaScript動態插入 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 新增商品表單 -->
+            <div id="addProductView" class="view" style="display: none;">
+                <h2>商品表單</h2>
+                <div class="form-container">
+                    <h3>新增商品資訊：</h3>
+                    <form id="addProductForm">
+                        <div class="form-group">
+                            <label for="productName">商品名稱</label>
+                            <input type="text" id="productName" name="productName" placeholder="請輸入商品名稱" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">商品價格</label>
+                            <input type="number" id="productPrice" name="productPrice" placeholder="請輸入商品價格" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDesc">商品資訊</label>
+                            <textarea id="productDesc" name="productDesc" rows="4" placeholder="請輸入商品資訊"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel">重設</button>
+                            <button type="submit" class="btn-submit">新增</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁尾 -->
+        <footer>
+            <p> 2024 ITSA管理面板・保留所有權利・ITSA 2024設計</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
