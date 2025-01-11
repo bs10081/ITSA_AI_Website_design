@@ -260,6 +260,29 @@ $(document).ready(function() {
         });
     });
 
+    // 下拉選單控制
+    $('.dropdown-toggle').click(function(e) {
+        e.stopPropagation();
+        $(this).toggleClass('active');
+        $(this).siblings('.dropdown-menu').toggleClass('show');
+    });
+
+    // 點擊其他地方關閉下拉選單
+    $(document).click(function(e) {
+        if (!$(e.target).closest('.user-info').length) {
+            $('.dropdown-toggle').removeClass('active');
+            $('.dropdown-menu').removeClass('show');
+        }
+    });
+
+    // 下拉選單項目點擊事件
+    $('.dropdown-item').click(function(e) {
+        e.preventDefault();
+        $('.dropdown-toggle').removeClass('active');
+        $('.dropdown-menu').removeClass('show');
+        // 這裡可以添加各選項的具體功能
+    });
+
     // 初始載入商品列表
     console.log('Initial products load');
     loadProducts();

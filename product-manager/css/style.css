@@ -44,8 +44,9 @@ body {
     left: 60px;
 }
 
+/* 導航欄按鈕 */
 .sidebar-toggle {
-    display: none; /* 預設隱藏漢堡按鈕 */
+    display: flex; /* 改為始終顯示 */
     align-items: center;
     justify-content: center;
     width: 40px;
@@ -57,6 +58,19 @@ body {
     color: var(--primary-color);
     padding: 0;
     margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    color: var(--secondary-color);
+}
+
+.sidebar-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-toggle i {
+    transform: rotate(180deg);
 }
 
 .header h1 {
@@ -195,15 +209,11 @@ body {
         width: 100%;
     }
 
-    .sidebar-toggle {
-        display: flex; /* 在手機版顯示漢堡按鈕 */
-    }
-
     .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         position: fixed;
-        top: 60px; /* 配合header高度 */
+        top: 60px;
         left: 0;
         width: 250px;
         height: calc(100vh - 60px);
@@ -236,49 +246,93 @@ body {
     }
 }
 
-/* 用戶信息樣式 */
+/* 使用者資訊區域 */
 .user-info {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.dropdown {
+    margin-left: auto;
     position: relative;
-    display: inline-block;
 }
 
-.dropbtn {
+.user-name {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.user-role {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 8px;
+}
+
+/* 下拉選單按鈕 */
+.dropdown-toggle {
     background: none;
     border: none;
+    padding: 5px;
+    margin-left: 8px;
     cursor: pointer;
-    font-size: 1.5em;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.dropdown-content {
-    display: none;
+.dropdown-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.active i {
+    transform: rotate(180deg);
+}
+
+/* 下拉選單 */
+.dropdown-menu {
     position: absolute;
+    top: 100%;
     right: 0;
     background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 5px;
-    z-index: 1;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 8px 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
 }
 
-.dropdown-content a {
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
     color: var(--text-color);
-    padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    transition: background-color 0.2s ease;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
+.dropdown-item:hover {
+    background-color: #f5f5f5;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.dropdown-item i {
+    margin-right: 10px;
+    width: 20px;
+    color: var(--primary-color);
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .user-info {
+        margin-right: 10px;
+    }
+    
+    .user-role {
+        display: none;
+    }
 }
 
 /* 表格樣式 */
